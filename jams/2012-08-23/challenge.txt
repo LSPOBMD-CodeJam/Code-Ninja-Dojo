@@ -1,0 +1,25 @@
+JavaScript TDD with Jasmine
+---
+
+Preparation
+    Everyone to pull the code for todays jam from the Code-Ninja-Dojo github
+    repository
+    Have your favourite editor/IDE at the ready
+    
+Exercise
+    Part 1
+	There is some JavaScript code (widgets.js) that doesn't have any tests
+	around it. The code should allow you to only select the colour of a
+	widget if the value of the number of widgets is greater than 0. There is
+	currently no test for this code. This code makes use of jQuery.
+	    Your challenge is to write one and make it pass.
+    Part 2
+	We need to add some new functionality to the page. Currently no error
+	message appears if the user clicks the 'OK' button without selecting a
+	colour or entering a value. The message we would like to see is "Please
+	enter the number of widgets" and "Please select a colour".
+	    Your challenge is to write the new functionality using TDD.
+
+
+	
+
