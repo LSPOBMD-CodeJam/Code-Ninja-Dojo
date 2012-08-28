@@ -26,6 +26,11 @@ describe("widgets", function() {
 			fixture.append("	</div>  ");
 
 		}); 
+afterEach( function() {
+
+	$('#fixture').remove();
+
+});
 
 	it("should disable #colour when page init", function() {
 			init(); 
