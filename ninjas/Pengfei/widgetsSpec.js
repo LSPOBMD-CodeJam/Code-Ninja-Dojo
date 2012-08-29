@@ -1,6 +1,6 @@
-describe("widgets", function(){
+describe("widgets", function() {
 
-	beforeEach(function(){
+	beforeEach(function() {
 		var input = $('<input type="text" name="widgets" value="" id="widgets" />');
 		var select = $('<select name="colour" id="colour" size="1" />');
 
@@ -10,12 +10,12 @@ describe("widgets", function(){
 		validateWidgets();
 	});
 
-	afterEach(function(){
+	afterEach(function() {
 		$("#widgets").remove();
 		$("#colour").remove();
 	});
 
-	it("init should disable colour element", function(){
+	it("init should disable colour element", function() {
 		var beforeInit = $("#colour").attr("disabled");
 		expect(beforeInit).toEqual(undefined);
 
@@ -25,7 +25,7 @@ describe("widgets", function(){
 		expect(afterInit).toEqual("disabled");
 	});
 
-	it("colour should enable when the value is 1", function(){
+	it("colour should enable when the value is 1", function() {
 		$("#widgets").val(1);
 		$("#widgets").trigger("keyup");
 
@@ -33,7 +33,7 @@ describe("widgets", function(){
 		expect(actual).toEqual(undefined);
 	});
 
-	it("colour should be diabled when the value is 0", function(){
+	it("colour should be diabled when the value is 0", function() {
 		$("#widgets").val(0);
 		$("#widgets").trigger("keyup");
 
@@ -41,11 +41,39 @@ describe("widgets", function(){
 		expect(actual).toEqual("disabled");
 	});
 
-	it("colour should be diabled when the value is -1", function(){
+	it("colour should be diabled when the value is -1", function() {
 		$("#widgets").val(-1);
 		$("#widgets").trigger("keyup");
 
 		var actual = $("#colour").attr("disabled");
 		expect(actual).toEqual("disabled");
 	});
-})
+});
+
+describe("widgets", function(){
+
+	beforeEach(function() {
+		var input = $('<input type="text" name="widgets" value="" id="widgets" />');
+		var select = $('<select name="colour" id="colour" size="1" />');
+		var okButton = $('<input type="submit" value="OK" id="OKButton" />');
+		var container = $('<div id="errorMessagesContainer"></div>');
+
+		$(document.body).append(input);
+		$(document.body).append(select);
+		$(document.body).append(okButton);
+		$(document.body).append(container);		
+	});
+
+	it("should show error message when clicking ok button without entering anything.", function(){
+		$("#widgets").val("");
+		$("#OKButton").trigger("click");
+
+		var container = $("#errorMessagesContainer");
+
+		expect(container.children.length).toEqual(1);
+
+		var firstErrorMessage = container[0];
+
+		expect(firstErrorMessage.val()).toEuqal("Please enter the number of widgets");
+	});
+});
