@@ -24,9 +24,16 @@ function hookUpButtonClickEvent()
 		clearErrorMessages();
 		
 		var widgetsNumber = $("#widgets").val();
+		var selectedIndex = $("#colour")[0].selectedIndex;
+		
 		if(widgetsNumber == "")
 		{
 			showErrorMessage("Please enter the number of widgets");
+		}
+		
+		if(selectedIndex <= 0)
+		{
+			showErrorMessage("Please select a colour");
 		}
 	});
 }

@@ -63,6 +63,7 @@ describe("widgets", function(){
 		$(document.body).append(okButton);
 		$(document.body).append(container);	
 
+		validateWidgets();
 		hookUpButtonClickEvent();
 	});
 
@@ -73,30 +74,31 @@ describe("widgets", function(){
 		$("#errorMessagesContainer").remove();	
 	});
 
-	it("should show error message when clicking ok button without entering anything.", function(){
+	it("should show both error messages when clicking ok button without entering anything.", function(){
 		$("#widgets").val("");
 		$("#OKButton").trigger("click");
 
 		var container = $("#errorMessagesContainer");
 
-		expect(container.children().length).toEqual(1);
+		expect(container.children().length).toEqual(2);
 
 		var firstErrorMessage = container.children()[0];
+		var secondErrorMessage = container.children()[1];
 
 		expect(firstErrorMessage.textContent).toEqual("Please enter the number of widgets");
+		expect(secondErrorMessage.textContent).toEqual("Please select a colour");
 	});
-	
-	it("should only show 1 error message when clicking ok button multiple times without entering anything.", function(){
-		$("#widgets").val("");
+
+	it("should show error message when clicking ok button without selecting a colour.", function(){
+		$("#widgets").val("5");
 		$("#OKButton").trigger("click");
-		$("#OKButton").trigger("click");
-		
+
 		var container = $("#errorMessagesContainer");
 
 		expect(container.children().length).toEqual(1);
 
 		var firstErrorMessage = container.children()[0];
 
-		expect(firstErrorMessage.textContent).toEqual("Please enter the number of widgets");
+		expect(firstErrorMessage.textContent).toEqual("Please select a colour");
 	});
 });
