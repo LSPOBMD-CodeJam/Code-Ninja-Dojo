@@ -61,7 +61,16 @@ describe("widgets", function(){
 		$(document.body).append(input);
 		$(document.body).append(select);
 		$(document.body).append(okButton);
-		$(document.body).append(container);		
+		$(document.body).append(container);	
+
+		hookUpButtonClickEvent();
+	});
+
+	afterEach(function() {
+		$("#widgets").remove();
+		$("#colour").remove();	
+		$("#OKButton").remove();
+		$("#errorMessagesContainer").remove();	
 	});
 
 	it("should show error message when clicking ok button without entering anything.", function(){
@@ -70,10 +79,24 @@ describe("widgets", function(){
 
 		var container = $("#errorMessagesContainer");
 
-		expect(container.children.length).toEqual(1);
+		expect(container.children().length).toEqual(1);
 
-		var firstErrorMessage = container[0];
+		var firstErrorMessage = container.children()[0];
 
-		expect(firstErrorMessage.val()).toEuqal("Please enter the number of widgets");
+		expect(firstErrorMessage.textContent).toEqual("Please enter the number of widgets");
+	});
+	
+	it("should only show 1 error message when clicking ok button multiple times without entering anything.", function(){
+		$("#widgets").val("");
+		$("#OKButton").trigger("click");
+		$("#OKButton").trigger("click");
+		
+		var container = $("#errorMessagesContainer");
+
+		expect(container.children().length).toEqual(1);
+
+		var firstErrorMessage = container.children()[0];
+
+		expect(firstErrorMessage.textContent).toEqual("Please enter the number of widgets");
 	});
 });
