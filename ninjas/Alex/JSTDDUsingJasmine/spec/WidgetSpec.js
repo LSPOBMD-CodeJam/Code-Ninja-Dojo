@@ -58,21 +58,32 @@ describe('test actions according to value of number of widgets', function () {
        });
        
        afterEach(function() {
-           $("#submitButton").remove();    
+           $("#submitButton").remove();
+           $("#noValue").remove();  
+           $("#selectOfColour").remove();
        });
        
        it("should append enter a number error message when neither enter a value nor select a colour", function() {
            clickToVerify();
            $("#submitButton").trigger('click');
-           expect($("#noValue")[0].innerHTML).toEqual("please enter the number of widgets");
+           expect($("#noValue").html()).toEqual("please enter the number of widgets");
        }); 
        
        it("should append select a colour error message when only not select a colour", function() {
-           $("#widgets").val("1");
            clickToVerify();
+           $("#widgets").val("1");
            $("#submitButton").trigger('click');
-           expect($("#noSelectOfColour")[0].innerHTML).toEqual("please select a colour");
+           expect($("#selectOfColour").html()).toEqual("please select a colour");
        }); 
+       
+       it("should not append error message when value has been entered and colour has also been selected", function() {
+           clickToVerify();
+           $("#widgets").val("1");
+           $("#colour")[0].selectedIndex = 1;
+           $("#submitButton").trigger('click');
+           expect($("#selectOfColour")[0]).toEqual(null);
+           expect($("#selectOfColour")[0]).toEqual(null);
+       });
   });
 });
 

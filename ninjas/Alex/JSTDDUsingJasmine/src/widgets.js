@@ -20,12 +20,12 @@ function validateWidgets() {
 
 function clickToVerify() {
     $("#submitButton").click(function() {
-        var v = $("#widgets");
-        if (v.val() == "") {
+        if ($("#widgets").val() == "") {
             $(document.body).append('<p id="noValue">please enter the number of widgets</p>');
         } 
-        if ($("#colour option:selected").length == 0) {
-            $(document.body).append('<p id="noSelectOfColour">please select a colour</p>')
+        // if ($("#colour option:selected").text() == "Please select a colour") 
+        if ($("#colour")[0].selectedIndex == 0) {
+            $(document.body).append('<p id="selectOfColour">please select a colour</p>')
         }
     });
 }
