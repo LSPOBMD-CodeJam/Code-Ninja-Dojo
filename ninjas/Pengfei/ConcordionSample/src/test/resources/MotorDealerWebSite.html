@@ -1,0 +1,37 @@
+<html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<head>
+<link href="concordion.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<h1>Fake motor dealer test</h1>
+	<div>
+		When a dealer log in, he should be on the <span
+			concordion:assertEquals="getCurrentPageName()">select your car</span>
+		page.
+	</div>
+	<br />
+	<div>
+		The dealer selects a car like this:
+		<table>
+			<tr>
+				<th>Manufacture year</th>
+				<th>Make</th>
+				<th>Details</th>
+			</tr>
+			<tr concordion:execute="selectCar(#year, #make, #details)">
+				<td concordion:set="#year">2009</td>
+				<td concordion:set="#make">Honda</td>
+				<td concordion:set="#details">5D Hatchback</td>
+			</tr>
+		</table>
+		and he clicks the <span concordion:execute="clickContinueButton()">continue</span>
+		button.
+	</div>
+	<br />
+	<div>
+		Then the dealer should be on the <span
+			concordion:assertEquals="getCurrentPageName()">driver details</span>
+		page.
+	</div>
+</body>
+</html>
